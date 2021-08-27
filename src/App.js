@@ -1,11 +1,13 @@
 import { useRef, useState } from "react";
 import './App.css'
 
+const wrapInPixel = value => `${value}px`
+
 const createShape = (top, left) => {
   const el = document.createElement('div');
   el.className = 'extract-box';
-  el.style.top = `${top}px`;
-  el.style.left = `${left}px`;
+  el.style.top = wrapInPixel(top);
+  el.style.left = wrapInPixel(left);
   return el
 }
 
@@ -42,18 +44,18 @@ const App = () => {
 
     if (height < 0) {
       height = Math.abs(height)
-      rectangleRef.current.style.top = `${e.pageY}px`;
+      rectangleRef.current.style.top = wrapInPixel(e.pageY);
       rectCordinates.top = e.pageY;
       rectCordinates.bottom = y;
     }
     if (width < 0) {
       width = Math.abs(width)
-      rectangleRef.current.style.left = `${e.pageX}px`;
-      rectCordinates.left = `${e.pageX}px`;
+      rectangleRef.current.style.left = wrapInPixel(e.pageX);
+      rectCordinates.left = wrapInPixel(e.pageX);
       rectCordinates.right = x
     }
-    rectangleRef.current.style.height = `${height}px`;
-    rectangleRef.current.style.width = `${width}px`;
+    rectangleRef.current.style.height = wrapInPixel(height);
+    rectangleRef.current.style.width = wrapInPixel(width);
   }
 
   const handleChange = (e) => {
